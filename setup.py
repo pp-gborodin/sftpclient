@@ -17,6 +17,7 @@ setup(
     extras_require={
         'test': [
             'nose',
+            'six',
         ]
     },
     zip_safe=False,

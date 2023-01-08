@@ -1,9 +1,10 @@
 from .context import ParamikoSFTPClient, SSH2PySFTPClient, SFTPServerScaffolding, SFTPClientConfig
 
+import six.moves as sm
 import unittest, socket, random, string
 
 # make up some constant random content shared among all tests
-rando_content = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in xrange(1024 * 1024 * 2))
+rando_content = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in sm.range(1024 * 1024 * 2))
 
 '''
 Tests for SFTPClient implementations

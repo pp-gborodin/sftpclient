@@ -1,4 +1,3 @@
 paramiko
 sftpserver
-six
 ssh2-python

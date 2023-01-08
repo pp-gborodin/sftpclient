@@ -31,19 +31,8 @@ jobs:
           **/setup.py
           **/requirements.txt
           **/constraints.txt
-    - name: install-cmake
-      run: sudo apt-get -y install cmake wget
     - name: install-libssh2
-      run: |
-        sudo apt-get -y install libssh2-1-dev
-#        wget https://www.libssh2.org/download/libssh2-1.10.0.tar.gz \
-#        && tar xf libssh2-1.10.0.tar.gz \
-#        && cd libssh2-1.10.0/ \
-#        && mkdir bin \
-#        && cd bin/ \
-#        && cmake .. \
-#        && cmake --build . \
-#        && sudo make install
+      run: sudo apt-get -y install libssh2-1-dev
     - name: pip-install
       run: make install
     - name: run-tests
