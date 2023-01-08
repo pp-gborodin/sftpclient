@@ -7,3 +7,4 @@ deleteme*.*
 build/
 dist/
 venv/
+.idea/

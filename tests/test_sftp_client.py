@@ -14,7 +14,7 @@ class SFTPClientTestBase(object):
     def setUp(self):
         self.sftp_scaffolding = SFTPServerScaffolding().setUp()
         self.big_file_content = rando_content
-        self.big_file_filename = b'a_file'
+        self.big_file_filename = 'a_file'
         self.sftp_scaffolding.add_file(self.big_file_filename, self.big_file_content)
         # add some directories
         self.sftp_scaffolding.add_file('dir1/a', 'a')
@@ -28,14 +28,14 @@ class SFTPClientTestBase(object):
 
     def test_ls(self):
         with self.sftp_client as sftp:
-            files = sftp.ls('/')
+            files = sftp.ls(u'/')
             assert self.big_file_filename in files
             assert 'dir1' in files
             assert 'dir1/dir2' not in files
 
     def test_recursive_ls(self):
         with self.sftp_client as sftp:
-            files = sftp.ls('/', recursive = True)
+            files = sftp.ls(u'/', recursive = True)
             assert self.big_file_filename in files
             assert 'dir1/a' in files
             assert 'dir1/dir2/b' in files
