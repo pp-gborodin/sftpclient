@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='pp-sftpclient',
-    version='1.0.2',
+    version='1.0.4',
     description='Wrapper for some SFTP clients',
     author='erachitskiy',
     author_email='erachitskiy@pulsepoint.com',
     url='https://github.com/pulsepointinc/sftpclient',
-    packages=find_packages(),
+    packages=find_packages(exclude='tests'),
     install_requires=[
         'paramiko',
         'sftpserver',

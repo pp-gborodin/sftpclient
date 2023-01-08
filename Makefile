@@ -21,7 +21,7 @@ test:
 constraints.txt:
 	$(PIP) freeze \
 		--exclude-editable \
-		--exclude sftpclient > constraints.txt
+		--exclude pp-sftpclient > constraints.txt
 
 
 .PHONY: docker-build
