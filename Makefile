@@ -1,7 +1,6 @@
 SYSTEM_PYTHON := $(shell which python2)
 VENV          := venv
 PIP           := pip
-NOSETESTS     := nosetests
 
 venv:
 	$(SYSTEM_PYTHON) -m virtualenv $(VENV)
@@ -14,8 +13,7 @@ install:
 
 .PHONY: test
 test:
-	$(NOSETESTS) tests
-
+	pytest tests
 
 .PHONY: constraints.txt
 constraints.txt:
