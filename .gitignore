@@ -6,3 +6,4 @@ deleteme*.*
 **/*.pyc
 build/
 dist/
+venv/
