@@ -136,8 +136,8 @@ class SSH2PySFTPClient(SFTPClient):
                 else:
                     kind = stat.S_IFMT(attrs.permissions)
                     if kind == stat.S_IFDIR:
-                        for child_fname in self.ls(dir + '/' + buf, True):
-                            ret.append(buf + '/' + child_fname)
+                        for child_fname in self.ls(dir + b'/' + buf, True):
+                            ret.append(buf + b'/' + child_fname)
                     else:
                         ret.append(buf)
 
