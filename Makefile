@@ -15,3 +15,8 @@ install:
 .PHONY: test
 test:
 	$(NOSETESTS) tests
+
+
+.PHONY: constraints.txt
+constraints.txt:
+	$(PIP) freeze > constraints.txt
