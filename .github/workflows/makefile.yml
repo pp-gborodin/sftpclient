@@ -34,6 +34,6 @@ jobs:
     - name: install-libssh2
       run: sudo apt-get -y install libssh2-1-dev
     - name: pip-install
-      run: make install
+      run: pip install --upgrade pip wheel && make install
     - name: run-tests
       run: make test
