@@ -19,4 +19,6 @@ test:
 
 .PHONY: constraints.txt
 constraints.txt:
-	$(PIP) freeze > constraints.txt
+	$(PIP) freeze \
+		--exclude-editable \
+		--exclude sftpclient > constraints.txt
