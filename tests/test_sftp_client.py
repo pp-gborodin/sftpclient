@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from .context import ParamikoSFTPClient, SSH2PySFTPClient, SFTPServerScaffolding, SFTPClientConfig
 
 import six.moves as sm
