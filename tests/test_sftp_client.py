@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from .context import ParamikoSFTPClient, SSH2PySFTPClient, SFTPServerScaffolding, SFTPClientConfig
 
 import six.moves as sm
@@ -51,7 +49,7 @@ class SFTPClientTestBase(object):
                 self.content = ''
             def write_fn(self, buf, lent):
                 self.written = self.written + lent
-                self.content = self.content + buf[0:lent]
+                self.content = self.content + buf[0:lent].decode('utf-8')
 
         w = Writer()
         with self.sftp_client as sftp:
