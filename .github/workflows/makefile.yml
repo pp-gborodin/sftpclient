@@ -1,0 +1,39 @@
+name: dp-services
+
+on: [push]
+
+jobs:
+  test-py27:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '2.7'
+        cache: 'pip'
+        cache-dependency-path: |
+          **/setup.py
+          **/requirements.txt
+          **/constraints.txt
+    - name: pip-install
+      run: make install
+    - name: unit-tests
+      run: make test
+  test-py38:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+        cache: 'pip'
+        cache-dependency-path: |
+          **/setup.py
+          **/requirements.txt
+          **/constraints.txt
+    - name: install-libssh2
+      run: sudo apt-get -y install libssh2-1-dev
+    - name: pip-install
+      run: pip install --upgrade pip wheel && make install
+    - name: run-tests
+      run: make test

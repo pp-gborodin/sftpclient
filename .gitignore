@@ -4,3 +4,7 @@ deleteme*.*
 27
 *.egg-info
 **/*.pyc
+build/
+dist/
+venv/
+.idea/

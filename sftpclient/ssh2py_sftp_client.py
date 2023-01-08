@@ -125,10 +125,12 @@ class SSH2PySFTPClient(SFTPClient):
         raise ValueError('Could not obtain remote file handle')
 
     def ls(self, dir, recursive=False):
+        # type: (six.text_type, bool) -> list[six.text_type]
         ret = []
         fh = self._opendir_fh(dir)
         try:
-            for size, buf, attrs in fh.readdir():
+            for size, buf_, attrs in fh.readdir():
+                buf = buf_.decode('utf-8')
                 if size == LIBSSH2_ERROR_EAGAIN:
                     continue
                 if recursive == False:
@@ -136,8 +138,8 @@ class SSH2PySFTPClient(SFTPClient):
                 else:
                     kind = stat.S_IFMT(attrs.permissions)
                     if kind == stat.S_IFDIR:
-                        for child_fname in self.ls(dir + '/' + buf, True):
-                            ret.append(buf + '/' + child_fname)
+                        for child_fname in self.ls(dir + u'/' + buf, True):
+                            ret.append(buf + u'/' + child_fname)
                     else:
                         ret.append(buf)
 

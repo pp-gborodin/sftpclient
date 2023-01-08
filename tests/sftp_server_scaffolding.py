@@ -14,9 +14,10 @@ class SFTPServerScaffolding(object):
         return port
 
     def __init__(self):
-        self.root_dir = tempfile.mkdtemp()
+        self.root_dir = tempfile.mkdtemp()  # type: str
 
     def add_file(self, file_name, content):
+        # type: (bytes, str) -> None
         abs_file_path = os.path.join(self.root_dir, file_name)
         abs_dir_path = os.path.dirname(abs_file_path)
         if not os.path.exists(abs_dir_path):

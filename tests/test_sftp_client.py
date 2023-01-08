@@ -1,9 +1,10 @@
 from .context import ParamikoSFTPClient, SSH2PySFTPClient, SFTPServerScaffolding, SFTPClientConfig
 
+import six.moves as sm
 import unittest, socket, random, string
 
 # make up some constant random content shared among all tests
-rando_content = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in xrange(1024 * 1024 * 2))
+rando_content = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in sm.range(1024 * 1024 * 2))
 
 '''
 Tests for SFTPClient implementations
@@ -27,14 +28,14 @@ class SFTPClientTestBase(object):
 
     def test_ls(self):
         with self.sftp_client as sftp:
-            files = sftp.ls('/')
+            files = sftp.ls(u'/')
             assert self.big_file_filename in files
             assert 'dir1' in files
             assert 'dir1/dir2' not in files
 
     def test_recursive_ls(self):
         with self.sftp_client as sftp:
-            files = sftp.ls('/', recursive = True)
+            files = sftp.ls(u'/', recursive = True)
             assert self.big_file_filename in files
             assert 'dir1/a' in files
             assert 'dir1/dir2/b' in files
@@ -48,7 +49,7 @@ class SFTPClientTestBase(object):
                 self.content = ''
             def write_fn(self, buf, lent):
                 self.written = self.written + lent
-                self.content = self.content + buf[0:lent]
+                self.content = self.content + buf[0:lent].decode('utf-8')
 
         w = Writer()
         with self.sftp_client as sftp:
