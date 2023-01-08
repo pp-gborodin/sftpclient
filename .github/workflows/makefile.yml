@@ -35,14 +35,15 @@ jobs:
       run: sudo apt-get -y install cmake wget
     - name: install-libssh2
       run: |
-        wget https://www.libssh2.org/download/libssh2-1.10.0.tar.gz \
-        && tar xf libssh2-1.10.0.tar.gz \
-        && cd libssh2-1.10.0/ \
-        && mkdir bin \
-        && cd bin/ \
-        && cmake .. \
-        && cmake --build . \
-        && sudo make install
+        sudo apt-get -y install libssh2-1-dev
+#        wget https://www.libssh2.org/download/libssh2-1.10.0.tar.gz \
+#        && tar xf libssh2-1.10.0.tar.gz \
+#        && cd libssh2-1.10.0/ \
+#        && mkdir bin \
+#        && cd bin/ \
+#        && cmake .. \
+#        && cmake --build . \
+#        && sudo make install
     - name: pip-install
       run: make install
     - name: run-tests
